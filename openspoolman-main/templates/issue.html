@@ -1,0 +1,8 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h1>Solve issue</h1>
+{% with current_spool=active_spool %} {% include 'fragments/spool_details.html' %} {% endwith %}
+
+
+{% endblock %}
