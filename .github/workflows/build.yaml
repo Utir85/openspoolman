@@ -12,6 +12,13 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
+      - name: Show repo tree (debug)
+        run: |
+          pwd
+          ls -la
+          echo "----"
+          find . -maxdepth 3 -type f -iname 'Dockerfile' -print || true
+
       - name: Set up QEMU
         uses: docker/setup-qemu-action@v3
 
@@ -27,8 +34,8 @@ jobs:
       - name: Build and push
         uses: docker/build-push-action@v6
         with:
-          context: .
-          file: ./Dockerfile
+          context: ./openspoolman-main
+          file: ./openspoolman-main/Dockerfile   # exakt so groß/klein geschrieben!
           platforms: linux/amd64,linux/arm64
           push: true
           tags: utir/openspoolman:latest
